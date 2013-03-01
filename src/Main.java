@@ -50,19 +50,21 @@ public class Main extends Canvas implements Runnable {
 		
 		long lastTime = System.currentTimeMillis(); 	//¬рем€ в мс
 		long delta;	
-
+		
+		XML xml = new XML();
+		
 		hero.x = 240;
 		hero.y = 240;
 		while(running)
 		{			
 			delta = System.currentTimeMillis() - lastTime; 
 			lastTime = System.currentTimeMillis();	
-			render(System.currentTimeMillis());			
+			render(System.currentTimeMillis(),xml);			
 		}
 		
 	}
 	
-	public void render(long delta) {
+	public void render(long delta,XML xml) {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(2);
@@ -70,34 +72,16 @@ public class Main extends Canvas implements Runnable {
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, getWidth(), getHeight());
-		Init init_png = new Init();			
-		Animator bg = new Animator(init_png.getArrayList("tpl1.png", 40, 40, 1, 1));
-		bg.chFrame(0);		
-		g.setColor(Color.orange);
 		
-		for(int i=0;i<getHeight();i+=40)
-		{
-			for(int j=0;j< getWidth();j+=40)
-			{				
-				g.drawImage(bg.sprite, j, i, 40, 40, null);
-			}
-		}
+		Background bg = new Background();
+		bg.DrawBg(0, 0, g, xml);
+			
 		
-		for(int i=0;i<getHeight();i+=40)
-		{
-			for(int j=0;j< getWidth();j+=40)
-			{
-				g.drawLine(j, i, j+40, i);
-				g.drawLine(j, i, j, i+40);
-			}			
-		}
 				
 		if(delta2+150<delta)
 		{
 			delta2=delta;
-			hero.HeroMove(500, 4);
+			//hero.HeroMove(500, 4);
 		}
 		hero.HeroDraw(g);
 		
