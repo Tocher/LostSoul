@@ -5,7 +5,8 @@ import javax.imageio.ImageIO;
 
 public class BufferedImageLoader {
     
-    public BufferedImage loadImage(String pathRelativeToThis) throws IOException {
+    public BufferedImage loadImage(String pathRelativeToThis) throws IOException
+    {
         URL url = this.getClass().getResource(pathRelativeToThis);
         BufferedImage img = ImageIO.read(url);
         return img;

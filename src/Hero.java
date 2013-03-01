@@ -4,8 +4,8 @@ import java.awt.Graphics;
 public class Hero extends Unit 
 {
 	private Animator hero;
-	private int frame=6;
-	private boolean ch=false;
+	private int frame = 6;
+	private boolean ch = false;
 	
 	public Hero(String name) 
 	{
@@ -18,20 +18,20 @@ public class Hero extends Unit
 		g.drawImage(hero.sprite, x, y, 32, 32, null);
 	}
 	
-	public void HeroMove(int x_new,int ms,Graphics g)
+	public void HeroMove(int x_new, int ms)
 	{
-		if(frame==6)
-			frame=7;
-		else if(frame==7)
+		if (frame == 6)
+			frame = 7;
+		else if (frame == 7)
 		{
-			if(ch)
-				frame=8;
+			if (ch)
+				frame = 8;
 			else
-				frame=6;
+				frame = 6;
 		}
-		else if(frame==8)
-			frame=7;
+		else if (frame == 8)
+			frame = 7;
 		hero.chFrame(frame);
-		x+=ms;
+		x += ms;
 	}
 }
