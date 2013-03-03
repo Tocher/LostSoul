@@ -106,7 +106,7 @@ public class Main extends Canvas implements Runnable {
 			hero.HeroMove(500, 4);
 		}
 		*/
-		hero.HeroDraw(g);
+		hero.HeroDraw(g,delta);
 		
 		
 		g.dispose();

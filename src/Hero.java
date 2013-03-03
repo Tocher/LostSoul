@@ -10,49 +10,69 @@ public class Hero extends Component
 	int ms=1;
 	private Animator hero;
 	private int frame = 6;
-	private boolean ch = false;	
 	private int dest_x = 0;
 	private int dest_y = 0;
+	long delta2 = 0;
+	long delta3 = 0;
 	
 	
 	public Hero(String name) 
 	{
 		Init init_png = new Init();
-		hero = new Animator(init_png.getArrayList(name, 32, 32, 4, 3));
+		hero = new Animator(init_png.getArrayList(name, 32, 32, 4, 4));
 	}
 	
-	public void HeroDraw(Graphics g) 
+	public void HeroDraw(Graphics g,long delta) 
 	{
-		if(dest_x!=0&&dest_y!=0)
-		{
-			if(dest_x!=x)
-				if(dest_x>x)
-				{
-					x+=ms;
-					GetFrame(2);
-				}
-				else
-				{
-					x-=ms;
-					GetFrame(4);
-				}				
-			if(dest_y!=y)
-				if(dest_y>y)
-				{
-					y+=ms;
-					GetFrame(3);
-				}
-				else
-				{
-					y-=ms;
-					GetFrame(1);
-				}
-			if(dest_x==x&&dest_y==y)
+		if(delta2+10<delta)
+		{			
+			delta2=delta;
+			if(dest_x!=0&&dest_y!=0)
 			{
-				dest_x=0;
-				dest_y=0;
+				if(dest_x!=x)
+					if(dest_x>x)
+					{
+						x+=ms;
+						if(delta3+50<delta)
+						{
+							delta3 = delta;
+							GetFrame(2);
+						}
+					}
+					else
+					{
+						x-=ms;
+						if(delta3+50<delta)
+						{
+							delta3 = delta;
+							GetFrame(4);
+						}
+					}				
+				if(dest_y!=y)
+					if(dest_y>y)
+					{
+						y+=ms;
+						if(delta3+50<delta)
+						{
+							delta3 = delta;
+							GetFrame(3);
+						}
+					}
+					else
+					{
+						y-=ms;
+						if(delta3+50<delta)
+						{
+							delta3 = delta;
+							GetFrame(1);
+						}
+					}
+				if(dest_x==x&&dest_y==y)
+				{
+					dest_x=0;
+					dest_y=0;
+				}					
 			}
-					
 		}
 		g.drawImage(hero.sprite, x, y, 32, 32, null);
 		hero.chFrame(frame);
@@ -65,20 +85,20 @@ public class Hero extends Component
 		switch(frame_set)
 		{
 		case 3:
-			if(frame>1)
+			if(frame>2)
 				frame=0;				
 			break;
 		case 2:
-			if(frame>8||frame<6)
-				frame=6;
+			if(frame>11||frame<8)
+				frame=8;
 			break;
 		case 1:
-			if(frame>11||frame<9)
-				frame=9;
+			if(frame>15||frame<12)
+				frame=12;
 			break;
 		case 4:
-			if(frame>5||frame<3)
-				frame=3;
+			if(frame>7||frame<4)
+				frame=4;
 			break;
 		}
 	}
