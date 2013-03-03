@@ -1,5 +1,6 @@
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jdom2.*;
@@ -8,7 +9,7 @@ import org.jdom2.input.*;
 
 public class XML {
 	
-	public String ReadBgXML(int x, int y)
+	public ArrayList<World> ReadBgXML(ArrayList<World> w)
 	{
 		try 
         {
@@ -17,18 +18,16 @@ public class XML {
             Document rDoc = parser.build(fr);            
             List<Element> temp = rDoc.getRootElement().getChildren();
             for (int i = 0; i < temp.size(); ++i) 
-            { 
-            	if((Integer.valueOf(temp.get(i).getAttributeValue("x")) == x)&&(Integer.valueOf(temp.get(i).getAttributeValue("y")) == y))
-            	{
-            		return temp.get(i).getAttributeValue("bg");
-            	}        	
+            {             	
+            	w.add(new World(Integer.valueOf(temp.get(i).getAttributeValue("x")),Integer.valueOf(temp.get(i).getAttributeValue("y")),Integer.valueOf(temp.get(i).getAttributeValue("bg")),Integer.valueOf(temp.get(i).getAttributeValue("obj"))));   
             }
+            return w;
         }
         catch (Exception ex) 
         {
             //System.out.println(ex.getMessage());
-        }		
-		return "none";
+        }	
+		return w;
 	}
 	 
     public void ReadXML() 
