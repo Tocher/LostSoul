@@ -52,7 +52,7 @@ public class Main extends Canvas implements Runnable {
 		
 		//long lastTime = System.currentTimeMillis(); 	//¬рем€ в мс
 		//long delta;	
-		addKeyListener(new KeyListener());
+		addKeyListener(new MyKeyAdapter(hero));
 		XML xml = new XML();
 		xml.ReadBgXML(w);
 		hero.x = 240;
