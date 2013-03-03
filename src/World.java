@@ -13,9 +13,9 @@ public class World {
 	public World(int x,int y,int bg,int obj)
 	{
 		Init init_png = new Init();			
-		grass = new Animator(init_png.getArrayList("grass_tile.png", 40, 40, 1, 5));	
+		grass = new Animator(init_png.getArrayList("grass_tile.png", 40, 40, 3, 6));	
 		objects = new Animator(init_png.getArrayList("obj_tile.png", 50, 70, 1, 1));
-		objects2 = new Animator(init_png.getArrayList("obj2_tile.png", 40, 40, 1, 1));
+		objects2 = new Animator(init_png.getArrayList("obj2_tile.png", 40, 40, 1, 2));
 		this.x = x;
 		this.y = y;
 		this.bg = bg;

@@ -1,11 +1,16 @@
+import java.awt.Component;
 import java.awt.Graphics;
 
-
-public class Hero extends Unit 
+public class Hero extends Component
 {
+	private static final long serialVersionUID = 1L;
+	int x;
+	int y;
+	int hp;
 	private Animator hero;
 	private int frame = 6;
-	private boolean ch = false;
+	private boolean ch = false;	
+	
 	
 	public Hero(String name) 
 	{
@@ -16,6 +21,7 @@ public class Hero extends Unit
 	public void HeroDraw(Graphics g) 
 	{
 		g.drawImage(hero.sprite, x, y, 32, 32, null);
+		hero.chFrame(frame);
 	}
 	
 	public void HeroMove(int x_new, int ms)

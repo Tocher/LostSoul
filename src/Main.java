@@ -50,17 +50,17 @@ public class Main extends Canvas implements Runnable {
 	
 	public void run() {
 		
-		long lastTime = System.currentTimeMillis(); 	//¬рем€ в мс
-		long delta;	
-		
+		//long lastTime = System.currentTimeMillis(); 	//¬рем€ в мс
+		//long delta;	
+		addKeyListener(new KeyListener());
 		XML xml = new XML();
 		xml.ReadBgXML(w);
 		hero.x = 240;
 		hero.y = 240;
 		while(running)
 		{			
-			delta = System.currentTimeMillis() - lastTime; 
-			lastTime = System.currentTimeMillis();	
+			//delta = System.currentTimeMillis() - lastTime; 
+			//lastTime = System.currentTimeMillis();	
 			render(System.currentTimeMillis());			
 		}
 		
@@ -87,7 +87,7 @@ public class Main extends Canvas implements Runnable {
 			w.get(i).draw_obj(0,0,g);
 		}		
 		
-		
+		/*
 		g.setColor(Color.orange);
  		for(int i=0;i<getHeight();i+=40)
  		{
@@ -105,6 +105,7 @@ public class Main extends Canvas implements Runnable {
 			delta2=delta;
 			hero.HeroMove(500, 4);
 		}
+		*/
 		hero.HeroDraw(g);
 		
 		
