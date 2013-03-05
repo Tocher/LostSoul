@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Init
 {		
-	public ArrayList<BufferedImage> getArrayList(String name, int x, int y, int row, int col)
+	public ArrayList<BufferedImage> getArrayList(String name, int width, int height, int row, int col)
 	{
 		ArrayList<BufferedImage> image = new ArrayList<BufferedImage>();
 		BufferedImageLoader loader = new BufferedImageLoader();
@@ -20,14 +20,14 @@ public class Init
 	    
 	    SpriteSheet image_sheet = new SpriteSheet(image_buff);
 	    
-	    int a, b;        
+	    int margin_x, margin_y;        
 	    for(int t = 0; t < row; t++)
 	    {
-	    	a = x * t;
+	    	margin_y = height * t;
 	    	for(int k = 0; k < col; k++)
 	    	{
-	    		b = y * k;
-	    		image.add(image_sheet.grabSprite(b, a, x, y));
+	    		margin_x = width * k;
+	    		image.add(image_sheet.grabSprite(margin_x, margin_y, width, height));
 	    	}
 	    }
 	    

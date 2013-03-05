@@ -21,6 +21,7 @@ public class Main extends Canvas implements Runnable {
 	Hero hero = new Hero("hero.png");
 	public static long delta2=0;
 	ArrayList<World> w = new ArrayList<World>();
+	public int hovern = 0;
 	
 	public static void main(String[] args) {		//Главная функция
 		Main game = new Main();				
@@ -53,6 +54,7 @@ public class Main extends Canvas implements Runnable {
 		//long lastTime = System.currentTimeMillis(); 	//Время в мс
 		//long delta;	
 		addKeyListener(new MyKeyAdapter(hero));
+		addMouseMotionListener(new CustomMotionListener());
 		XML xml = new XML();
 		xml.ReadBgXML(w);
 		hero.x = 240;
@@ -84,8 +86,9 @@ public class Main extends Canvas implements Runnable {
 		}		
 		for(int i=0;i<w.size();i++)
 		{
-			w.get(i).draw_obj(0,0,g);
+			w.get(i).draw_obj(0,0,g,hero,delta);
 		}		
+		
 		
 		/*
 		g.setColor(Color.orange);
@@ -106,7 +109,7 @@ public class Main extends Canvas implements Runnable {
 			hero.HeroMove(500, 4);
 		}
 		*/
-		hero.HeroDraw(g,delta);
+		
 		
 		
 		g.dispose();
