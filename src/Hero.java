@@ -1,9 +1,8 @@
-import java.awt.Component;
+
 import java.awt.Graphics;
 
-public class Hero extends Component
+public class Hero extends Unit
 {
-	private static final long serialVersionUID = 1L;
 	int x;
 	int y;
 	int hp;
@@ -82,7 +81,7 @@ public class Hero extends Component
 				}					
 			}
 		}
-		g.drawImage(hero.sprite, x, y, 32, 32, null);
+		g.drawImage(hero.sprite, x * 40, y * 40, 32, 32, null);
 		hero.chFrame(frame);
 		
 	}
@@ -118,20 +117,20 @@ public class Hero extends Component
 			switch(dest)
 			{
 			case 1:
-				dest_y = y-40;
+				dest_y = --y;
 				dest_x = x;
 				break;
 			case 2:
 				dest_y = y;
-				dest_x = x+40;
+				dest_x = ++x;
 				break;
 			case 3:
-				dest_y = y+40;
+				dest_y = ++y;
 				dest_x = x;
 				break;
 			case 4:
 				dest_y = y;
-				dest_x = x-40;
+				dest_x = --x;
 				break;
 					
 			}

@@ -35,7 +35,7 @@ public class World {
 			}
 	}
 	
-	public void draw_obj(int x,int y,Graphics g,Hero hero, long delta)
+	public void draw_obj(int x,int y,Graphics g, Hero hero, long delta)
 	{
 		if(this.obj!=0)
 		{

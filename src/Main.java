@@ -22,6 +22,7 @@ public class Main extends Canvas implements Runnable {
 	public static long delta2=0;
 	ArrayList<World> w = new ArrayList<World>();
 	public int hovern = 0;
+	Graphics g;
 	
 	public static void main(String[] args) {		//Главная функция
 		Main game = new Main();				
@@ -54,11 +55,12 @@ public class Main extends Canvas implements Runnable {
 		//long lastTime = System.currentTimeMillis(); 	//Время в мс
 		//long delta;	
 		addKeyListener(new MyKeyAdapter(hero));
+		addMouseListener(new MyMouseAdapter(hero, g));
 		addMouseMotionListener(new CustomMotionListener());
 		XML xml = new XML();
 		xml.ReadBgXML(w);
-		hero.x = 240;
-		hero.y = 240;
+		hero.x = 8;
+		hero.y = 8;
 		while(running)
 		{			
 			//delta = System.currentTimeMillis() - lastTime; 
@@ -75,7 +77,7 @@ public class Main extends Canvas implements Runnable {
 			requestFocus();
 			return;
 		}
-		Graphics g = bs.getDrawGraphics();		
+		g = bs.getDrawGraphics();		
 		
 		//int s1 = Math.round(hero.x/40);
 		//int s2 = Math.round(hero.y/40);
@@ -89,8 +91,8 @@ public class Main extends Canvas implements Runnable {
 			w.get(i).draw_obj(0,0,g,hero,delta);
 		}		
 		
+
 		
-		/*
 		g.setColor(Color.orange);
  		for(int i=0;i<getHeight();i+=40)
  		{
@@ -103,12 +105,13 @@ public class Main extends Canvas implements Runnable {
  		
 		
 				
-		if(delta2+150<delta)
-		{
-			delta2=delta;
-			hero.HeroMove(500, 4);
-		}
-		*/
+//		if(delta2+150<delta)
+//		{
+//			delta2=delta;
+//			hero.HeroMove(500, 4);
+//		}
+		
+ 		
 		
 		
 		
