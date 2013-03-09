@@ -18,6 +18,9 @@ public class Main extends Canvas implements Runnable {
 	public static int HEIGHT = 650;				//Высота окна
 	public static String NAME = "LostSoul";		//Надпись
 	
+	public static long fps = 0;
+	public static long xml_load = 0;
+	
 	Hero hero = new Hero("hero.png");
 	public static long delta2=0;
 	ArrayList<World> w = new ArrayList<World>();
@@ -52,25 +55,33 @@ public class Main extends Canvas implements Runnable {
 	
 	public void run() {
 		
-		//long lastTime = System.currentTimeMillis(); 	//Время в мс
-		//long delta;	
+		long lastTime = System.currentTimeMillis(); 	//Время в мс
+		long delta = 0;	
 		addKeyListener(new MyKeyAdapter(hero));
-		addMouseListener(new MyMouseAdapter(hero, g));
+		addMouseListener(new MyMouseAdapter(hero));
 		addMouseMotionListener(new CustomMotionListener());
+		
+		World_Entities WE = new World_Entities();
+		
+		xml_load = System.currentTimeMillis();
 		XML xml = new XML();
 		xml.ReadBgXML(w);
-		hero.x = 8;
-		hero.y = 8;
+		xml_load = System.currentTimeMillis() - xml_load;
+		hero.x = 80;
+		hero.y = 80;
 		while(running)
 		{			
-			//delta = System.currentTimeMillis() - lastTime; 
-			//lastTime = System.currentTimeMillis();	
-			render(System.currentTimeMillis());			
+			lastTime = System.currentTimeMillis();
+			if(delta+10<lastTime)
+			{
+				delta = System.currentTimeMillis();	
+				render(System.currentTimeMillis(),WE);
+			}
 		}
 		
 	}
 	
-	public void render(long delta) {
+	public void render(long delta, World_Entities WE) {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
 			createBufferStrategy(2);
@@ -84,16 +95,16 @@ public class Main extends Canvas implements Runnable {
 		
 		for(int i=0;i<w.size();i++)
 		{
-			w.get(i).draw_bg(0,0,g);
+			w.get(i).draw_bg(0,0,g,WE);
 		}		
 		for(int i=0;i<w.size();i++)
 		{
-			w.get(i).draw_obj(0,0,g,hero,delta);
+			w.get(i).draw_obj(0,0,g,hero,delta,WE);
 		}		
 		
 
 		
-		g.setColor(Color.orange);
+		g.setColor(Color.white);
  		for(int i=0;i<getHeight();i+=40)
  		{
  			for(int j=0;j<getWidth();j+=40)
@@ -102,8 +113,8 @@ public class Main extends Canvas implements Runnable {
  	 			g.drawLine(j, i, j, i+40);
  			}
  		}
- 		
-		
+ 		g.setColor(Color.red);
+ 		g.drawString(String.valueOf(xml_load), 50, 20);
 				
 //		if(delta2+150<delta)
 //		{
