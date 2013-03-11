@@ -22,33 +22,36 @@ public class Main extends Canvas implements Runnable {
 	public static long xml_load = 0;
 	
 	Hero hero = new Hero("hero.png");
+	static Thread audio = new Thread(new Audio());
+	
 	public static long delta2=0;
-	ArrayList<World> w = new ArrayList<World>();
+	public static ArrayList<World> w = new ArrayList<World>();
 	public int hovern = 0;
 	Graphics g;
 	
-	public static void main(String[] args) {		//Главная функция
+	public static void main(String[] args) {		
 		Main game = new Main();				
-		game.setPreferredSize(new Dimension(WIDTH, HEIGHT));		//создание окна, по ширине высоте имени бла бла
-		JFrame frame = new JFrame(Main.NAME);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());
-		frame.add(game, BorderLayout.CENTER);
-		 
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();		//Выравнивение окна по центру монитора
+		game.setPreferredSize(new Dimension(WIDTH, HEIGHT));		
+		JFrame window = new JFrame(Main.NAME);
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		window.setLayout(new BorderLayout());
+		window.add(game, BorderLayout.CENTER);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();		
 		int w = 1300;
 		int h = 730;
 		int x1 = (dim.width - w) / 2;
 		int y2 = (dim.height - h) / 2;
-		frame.setLocation(x1, y2);
+		window.setLocation(x1, y2);
 		
-		frame.pack();						//какая-то бня
-		frame.setResizable(false);
-		frame.setVisible(true);
-		game.start();						//ПОНЕСЛАСЬ
+		window.pack();						
+		window.setResizable(true);
+		window.setVisible(true);
+		
+		audio.start();
+		game.start();						
 	}
 	
-	public void start() {		//Создает игровой поток
+	public void start() {		
 		running = true;
 		new Thread(this).start();
 	}
@@ -105,6 +108,7 @@ public class Main extends Canvas implements Runnable {
 
 		
 		g.setColor(Color.white);
+		
  		for(int i=0;i<getHeight();i+=40)
  		{
  			for(int j=0;j<getWidth();j+=40)

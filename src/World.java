@@ -50,4 +50,12 @@ public class World {
 			hero.HeroDraw(g,delta);
 		}
 	}
+	
+	public boolean IsObj()
+	{
+		if (obj != 0)
+			return true;
+		else
+			return false;
+	}
 }

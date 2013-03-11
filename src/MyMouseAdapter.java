@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -14,7 +14,6 @@ public class MyMouseAdapter extends MouseAdapter
 
 	public void mouseClicked(MouseEvent e)
 	{
-		
 		hero.MovementToCoords(e.getX() / 40, e.getY() / 40);
 	}
 	

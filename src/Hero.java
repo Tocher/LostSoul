@@ -1,5 +1,4 @@
 
-import java.awt.Graphics;
 
 public class Hero extends Unit
 {	
@@ -16,5 +15,10 @@ public class Hero extends Unit
 			return true;
 		else		
 			return false;
+	}
+	
+	public void MoveScreen()
+	{
+		
 	}
 }
