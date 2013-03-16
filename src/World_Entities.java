@@ -1,6 +1,6 @@
 
-public class World_Entities {
-
+public class World_Entities
+{
 	public Animator grass;
 	public Animator objects;
 	public Animator objects2;

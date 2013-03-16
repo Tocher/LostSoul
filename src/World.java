@@ -15,14 +15,21 @@ public class World {
 		this.obj = obj;
 	}
 	
+	public int GetX()
+	{
+		return x;
+	}
+	
+	public int GetY()
+	{
+		return y;
+	}
+	
 	public void draw_bg(int x,int y,Graphics g,World_Entities WE)
 	{
-		if((this.x>=x)&&(this.x<=x+40))
-			if((this.y>=y)&&(this.y<=y+20))
-			{
-				WE.grass.chFrame(this.bg-1);
-				g.drawImage(WE.grass.sprite, this.x*40, this.y*40, null);				
-			}
+		WE.grass.chFrame(this.bg-1);
+		g.drawImage(WE.grass.sprite, this.x*40, this.y*40, null);				
+			
 	}
 	
 	public void draw_obj(int x,int y,Graphics g, Hero hero, long delta,World_Entities WE)

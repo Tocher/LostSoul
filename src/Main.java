@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 
@@ -14,18 +13,19 @@ public class Main extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
 	private boolean running;
 	
-	public static int WIDTH = 1300;				//Ширина окна
-	public static int HEIGHT = 650;				//Высота окна
-	public static String NAME = "LostSoul";		//Надпись
+	public static int WIDTH = 1300;				
+	public static int HEIGHT = 650;				
+	public static String NAME = "LostSoul";		
 	
 	public static long fps = 0;
 	public static long xml_load = 0;
 	
-	Hero hero = new Hero("hero.png");
+	Hero hero;
 	static Thread audio = new Thread(new Audio());
 	
 	public static long delta2=0;
 	public static ArrayList<World> w = new ArrayList<World>();
+	
 	public int hovern = 0;
 	Graphics g;
 	
@@ -45,9 +45,12 @@ public class Main extends Canvas implements Runnable {
 		
 		window.pack();						
 		window.setResizable(true);
+		window.setSize(dim);
+		window.setResizable(false);
+		window.setLocation(0, 0);
 		window.setVisible(true);
 		
-		audio.start();
+		//audio.start();
 		game.start();						
 	}
 	
@@ -58,20 +61,21 @@ public class Main extends Canvas implements Runnable {
 	
 	public void run() {
 		
-		long lastTime = System.currentTimeMillis(); 	//Время в мс
+		long lastTime = System.currentTimeMillis(); 	
 		long delta = 0;	
-		addKeyListener(new MyKeyAdapter(hero));
-		addMouseListener(new MyMouseAdapter(hero));
-		addMouseMotionListener(new CustomMotionListener());
 		
 		World_Entities WE = new World_Entities();
 		
 		xml_load = System.currentTimeMillis();
 		XML xml = new XML();
 		xml.ReadBgXML(w);
+		
+		hero = new Hero("hero.png", w);
+		addMouseListener(new MyMouseAdapter(hero));
+		addMouseMotionListener(new CustomMotionListener());
 		xml_load = System.currentTimeMillis() - xml_load;
-		hero.x = 80;
-		hero.y = 80;
+		hero.x = 160;
+		hero.y = 160;
 		while(running)
 		{			
 			lastTime = System.currentTimeMillis();

@@ -326,7 +326,7 @@
 
 <field x="0" y="5" bg="16" obj="0" />
 <field x="1" y="5" bg="16" obj="0" />
-<field x="2" y="5" bg="15" obj="0" />
+<field x="2" y="5" bg="15" obj="11" />
 <field x="3" y="5" bg="1" obj="0" />
 <field x="4" y="5" bg="10" obj="0" />
 <field x="5" y="5" bg="11" obj="0" />
@@ -397,7 +397,7 @@
 <field x="5" y="6" bg="18" obj="0" />
 <field x="6" y="6" bg="13" obj="0" />
 <field x="7" y="6" bg="15" obj="0" />
-<field x="8" y="6" bg="2" obj="0" />
+<field x="8" y="6" bg="2" obj="2" />
 <field x="9" y="6" bg="9" obj="0" />
 <field x="10" y="6" bg="2" obj="0" />
 <field x="11" y="6" bg="15" obj="0" />
