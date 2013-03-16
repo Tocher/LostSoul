@@ -15,7 +15,9 @@ public class Main extends Canvas implements Runnable {
 	
 	public static int WIDTH = 1300;				
 	public static int HEIGHT = 650;				
-	public static String NAME = "LostSoul";		
+	public static String NAME = "LostSoul";	
+	
+	public static float size = (float) 1;
 	
 	public static long fps = 0;
 	public static long xml_load = 0;
@@ -70,6 +72,21 @@ public class Main extends Canvas implements Runnable {
 		XML xml = new XML();
 		xml.ReadBgXML(w);
 		
+		for(int i=0;i<w.size();i++)
+		{
+			for(int j=0;j<w.size();j++)
+			{
+				if((w.get(i).GetX()==w.get(j).GetX()+1)&&(w.get(i).GetY()==w.get(j).GetY()))
+					w.get(i).left = w.get(j);
+				if((w.get(i).GetX()==w.get(j).GetX()-1)&&(w.get(i).GetY()==w.get(j).GetY()))
+					w.get(i).right = w.get(j);
+				if((w.get(i).GetY()==w.get(j).GetY()+1)&&(w.get(i).GetX()==w.get(j).GetX()))
+					w.get(i).up = w.get(j);
+				if((w.get(i).GetY()==w.get(j).GetY()-1)&&(w.get(i).GetX()==w.get(j).GetX()))
+					w.get(i).down = w.get(j);
+			}
+		}	
+		
 		hero = new Hero("hero.png", w);
 		addMouseListener(new MyMouseAdapter(hero));
 		addMouseMotionListener(new CustomMotionListener());
@@ -110,7 +127,7 @@ public class Main extends Canvas implements Runnable {
 		}		
 		
 
-		
+		/*
 		g.setColor(Color.white);
 		
  		for(int i=0;i<getHeight();i+=40)
@@ -121,6 +138,7 @@ public class Main extends Canvas implements Runnable {
  	 			g.drawLine(j, i, j, i+40);
  			}
  		}
+ 		*/
  		g.setColor(Color.red);
  		g.drawString(String.valueOf(xml_load), 50, 20);
 				

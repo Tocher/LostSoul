@@ -158,7 +158,7 @@ public class Unit
 				CheckForMovement();
 			}
 		}
-		g.drawImage(unit.sprite, x, y, 32, 32, null);
+		g.drawImage(unit.sprite, x, y, (int)(32*Main.size), (int)(32*Main.size), null);
 		unit.chFrame(this.frame);
 		g.setColor(Color.white);
 		
