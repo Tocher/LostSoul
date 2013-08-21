@@ -30,6 +30,7 @@ public class Main extends Canvas implements Runnable {
 	
 	public int hovern = 0;
 	Graphics g;
+	InterfaceBlocks blocks;
 	
 	public static void main(String[] args) {		
 		Main game = new Main();				
@@ -52,7 +53,7 @@ public class Main extends Canvas implements Runnable {
 		window.setLocation(0, 0);
 		window.setVisible(true);
 		
-		//audio.start();
+		audio.start();
 		game.start();						
 	}
 	
@@ -87,6 +88,7 @@ public class Main extends Canvas implements Runnable {
 			}
 		}	
 		
+		blocks = new InterfaceBlocks();
 		hero = new Hero("hero.png", w);
 		addMouseListener(new MyMouseAdapter(hero));
 		addMouseMotionListener(new CustomMotionListener());
@@ -112,44 +114,25 @@ public class Main extends Canvas implements Runnable {
 			requestFocus();
 			return;
 		}
-		g = bs.getDrawGraphics();		
+		g = bs.getDrawGraphics();
 		
-		//int s1 = Math.round(hero.x/40);
-		//int s2 = Math.round(hero.y/40);
-		
+		// Draw Background
 		for(int i=0;i<w.size();i++)
 		{
 			w.get(i).draw_bg(0,0,g,WE);
 		}		
+		// Draw objects and units
 		for(int i=0;i<w.size();i++)
 		{
 			w.get(i).draw_obj(0,0,g,hero,delta,WE);
 		}		
 		
-
-		/*
-		g.setColor(Color.white);
 		
- 		for(int i=0;i<getHeight();i+=40)
- 		{
- 			for(int j=0;j<getWidth();j+=40)
- 			{
- 				g.drawLine(j, i, j+40, i);
- 	 			g.drawLine(j, i, j, i+40);
- 			}
- 		}
- 		*/
+		// Time for xml load
  		g.setColor(Color.red);
- 		g.drawString(String.valueOf(xml_load), 50, 20);
-				
-//		if(delta2+150<delta)
-//		{
-//			delta2=delta;
-//			hero.HeroMove(500, 4);
-//		}
+ 		g.drawString(String.valueOf(xml_load), 50, 20); 		
 		
- 		
-		
+ 		blocks.drawHpBar(g, 50);
 		
 		
 		g.dispose();

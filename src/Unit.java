@@ -160,9 +160,11 @@ public class Unit
 		}
 		g.drawImage(unit.sprite, x, y, (int)(32*Main.size), (int)(32*Main.size), null);
 		unit.chFrame(this.frame);
-		g.setColor(Color.white);
 		
-		World world = w.get((y/40)*63 + x/40);
+		//Debug information
+		/*
+		g.setColor(Color.white);
+		World world = w.get((y/40)*63 + x/40);		
 		
 		g.drawString("X = " + String.valueOf(world.GetX()), 700, 20);
 		g.drawString("Y = " + String.valueOf(world.GetY()), 900, 20);
@@ -173,6 +175,7 @@ public class Unit
 		g.drawString("Y = " + String.valueOf(this.y), 250, 20);
 		g.drawString("X_new = " + String.valueOf(this.end_dest_x), 400, 20);
 		g.drawString("Y_new = " + String.valueOf(this.end_dest_y), 500, 20);
+		*/
 	}	
 	
 	public void Move(int dest)
